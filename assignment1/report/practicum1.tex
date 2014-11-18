@@ -1,10 +1,10 @@
 \documentclass{article}
 \usepackage[english]{babel}
-\usepackage{hyperref}
 
-%Code
-\usepackage{listings}
-\usepackage{color}
+% References
+\usepackage{varioref}
+\usepackage{hyperref}
+\usepackage{cleveref}
 
 %Plaatjes
 \usepackage{graphicx}
@@ -13,29 +13,13 @@
 
 \usepackage{todonotes}
 
-% Code lay-out
-\definecolor{light-gray}{gray}{0.95}
-\usepackage{courier}
-\lstset{language=Matlab, 
-	tabsize = 4, 
-	columns=flexible, 
-	breaklines = true, 
-	backgroundcolor=\color{light-gray},
-	keepspaces=true,
-	showspaces=false,
-	showstringspaces=false,
-	basicstyle=\ttfamily
-}
-
 %Wiskunde
 \usepackage{siunitx}
 
 % Math commands
 \newcommand{\normal}[2]{\ensuremath{\mathcal{N}\left(#1,\, #2\right)}}
 
-% Multi column page layou
-\usepackage{multicol}
-
+% Other commands
 \renewcommand{\t}[1]{\texttt{#1}}
 
 \title{Neural Networks\\Practical Assignment I: Perceptron training}
@@ -45,11 +29,16 @@
 
 \maketitle
 
-\section*{Assignment 1}
-\input{assignment1.tex}
+\section*{Introduction}
+\input{introducton.tex}
 	
-\clearpage
-\appendix
-\input{appendix.tex}
+\section*{Method}
+\input{method.tex}	
+
+\section*{Results}
+\input{resutls.tex}
+
+\section*{Discussion}
+\input{discussion.tex}
 
 \end{document}
