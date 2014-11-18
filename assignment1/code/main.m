@@ -23,21 +23,20 @@ clear all; close all force; clc;
 % end
 
 %% Init Test
-N = 50;
+NS = (25:25:150);
 alphas = (0.75:0.25:3.0);
-n_d = 500;
-n_max = 1000;
-results = zeros(1, size(alphas,2));
-convs = zeros(1, size(alphas,2));
+n_d = 75;
+n_max = 250;
+results = zeros(size(NS, 2), size(alphas,2));
+convs = zeros(size(NS, 2), size(alphas,2));
 
-if parpool('local') == 0
-    parpool open 4;
+pp = parpool('local', 4);
+
+for j = 1:size(NS,2)
+    parfor i = 1:size(alphas, 2)
+        [result, conv] = test(n_d, n_max, NS(j), alphas(i));
+        results(j, i) = result;
+        convs(j, i) = conv;
+    end
 end
-
-parfor i = 1:size(alphas, 2)
-    [result, conv] = test(n_d, n_max, N, alphas(i));
-    results(i) = result;
-    convs(i) = conv;
-end
-
-parpool close;
+delete(pp);
