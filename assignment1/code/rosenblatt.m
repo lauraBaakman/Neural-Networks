@@ -22,6 +22,7 @@ function [ weights, n ] = rosenblatt( data, labels, n_max )
                weights = weights + 1/N * psi * label;
            end
        end
+      n = n + 1;
     end
     
 
