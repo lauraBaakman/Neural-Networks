@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"name": "Code",
+			"path": "./code",
+			"file_exclude_patterns": ["*.aux", "*.log", "*.out", "*.synctex.gz", "*.fdb_latexmk", "*.m~"]
+		},
+		{
+			"follow_symlinks": true,
+			"name": "Report",
+			"path": "./report",
+			"file_exclude_patterns": ["*.aux", "*.log", "*.out", "*.synctex.gz", "*.fdb_latexmk", "*.m~"]
+		},
+		{
+			"follow_symlinks": true,
+			"name": "Images",
+			"path": "./report/img",
+			"file_exclude_patterns": ["*.aux", "*.log", "*.out", "*.synctex.gz", "*.fdb_latexmk", "*.m~"]
+		}				
+	]
+}
