@@ -13,22 +13,25 @@ function [ weights, n ] = rosenblatt( data, labels, n_max )
     
     weights = zeros(1, N);
     n = 0;
+    not_converged = 1;
     
-    while n < n_max
-       for i = 1:P
-           psi = data(i, :);
-           label = labels(i);
-           if E(weights, psi, label)
-               weights = weights + 1/N * psi * label;
-           end
-       end
-      n = n + 1;
+    while not_converged && n < n_max
+        not_converged = 0;
+        for i = 1:P
+            psi = data(i, :);
+            label = labels(i);
+            if E(weights, psi, label)
+                not_converged = 1;
+                weights = weights + 1/N * psi * label;
+            end
+        end
+        n = n + 1;
     end
     
+    
+end
 
-    end
-
-    function [e] = E (w, p, l)
-        e = dot(w, p) * l <= 0;
-    end
+function [e] = E (w, p, l)
+    e = dot(w, p) * l <= 0;
+end
 
