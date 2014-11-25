@@ -5,7 +5,7 @@ An artificial neural network consists of a large numbers of simple processors li
 
 The most simple case of a neural network is the perceptron, see \autoref{fig:1:perceptron}, This network consists of one layer of input nodes, connected to a processing unit through a single layer of weights, which determine the result of the output node. Mathematically a perceptron is any feed-forward network of noes with responses like $f(\vec{w}^T\vec{x})$ where $\vec{w}$ is the vector of weights, $\vec{x}$ is the pattern and $f$ is a sigmoid-like squashing function\cite{reed1998neural}. This squashing function ensures the binary output of the perceptron. 
 
-The perceptron is a linear binary classifier which means that it can only classify data sets that are homogeneously separable, which means that one can separate the data points of different classes with a vector through the origin. Inhomogeneously separable datasets are linearly separable when the separating vector is moved with some offset with respect to the origin.
+The perceptron is a linear binary classifier, these classifiers separate classes via a hyperplane. Homogeneously separable data sets can be separated by a hyperplane through the origin, inhomogeneously separable data sets cannot be separated by a hyperplane through the origin but they can be separated by a hyperplane if it is offset with a certain bias with respect to the origin. 
 
 \begin{figure}[H]
 	\centering
