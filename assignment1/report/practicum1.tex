@@ -1,20 +1,56 @@
-\documentclass{article}
+\documentclass[twoside]{article}
 \usepackage[english]{babel}
+
+% Fonts
+\usepackage[sc]{mathpazo}
+\usepackage[T1]{fontenc}
+\linespread{1.05}
+\usepackage{microtype}
+\usepackage{lettrine}
 
 % References
 \usepackage{varioref}
 \usepackage{hyperref}
 \usepackage{cleveref}
 
+% Document layout
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry}
+\usepackage{multicol}
+\usepackage{paralist}
+
+% Floats
+\usepackage{float}
+
 %Plaatjes
 \usepackage{graphicx}
-\usepackage[small,bf]{caption}
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption}
 \usepackage{subcaption}
 
-\usepackage{todonotes}
+% Tables
+\usepackage{booktabs}
+
+% Custom section headers
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\Roman{subsection}}
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}
+
 
 %Wiskunde
 \usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% References
+\usepackage[backend=bibtex]{biblatex}
+\usepackage{csquotes}
+\bibliography{biblio}
+
+% Temp
+\usepackage{todonotes}
 
 % Math commands
 \newcommand{\normal}[2]{\ensuremath{\mathcal{N}\left(#1,\, #2\right)}}
@@ -29,16 +65,41 @@
 
 \maketitle
 
-\section*{Introduction}
-\input{introducton.tex}
+\todo[inline]{Neural Smithing (p21) heeft een formule die de kans geeft dat een randomly gekozen dichotomy l.s.}
+\todo[inline]{Het lijkt alsof hij met de remark aan het einde van de slides wil zeggen dat patterns uit getrokken uit een standaard normaal distribution altijd in general position zijn.}
+\todo[inline]{Use compactitem environment for lists}
+
+% Example table:
+% \begin{table}[H]
+% \caption{Example table}
+% \centering
+% \begin{tabular}{llr}
+% \toprule
+% \multicolumn{2}{c}{Name} \\
+% \cmidrule(r){1-2}
+% First name & Last Name & Grade \\
+% \midrule
+% John & Doe & $7.5$ \\
+% Richard & Miles & $2$ \\
+% \bottomrule
+% \end{tabular}
+% \end{table}
+
+\begin{multicols}{2}
+
+\section{Introduction}
+\input{intro.tex}
 	
-\section*{Method}
+\section{Method}
 \input{method.tex}	
 
-\section*{Results}
-\input{resutls.tex}
+\section{Results}
+\input{results.tex}
 
-\section*{Discussion}
+\section{Discussion}
 \input{discussion.tex}
 
+\printbibliography
+
+\end{multicols}
 \end{document}
