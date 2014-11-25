@@ -1,5 +1,5 @@
 %!TEX root = practicum1.tex
-Given a dataset $\mathcal{D}$ with $N$ patterns $\xi \in \mathcal{R}^d$ each with a label $S$: $\mathcal{D} = \left\{\xi^\mu, S^\mu \right\}_{\mu}^{N}$, a percptron can be trained using the Rosenblatt algorithm which updates the weights each time step $\t = 1, 2, \ldots$:
+Given a dataset $\mathcal{D}$ with $N$ patterns $\xi \in \mathcal{R}^d$ each with a label $S$: $\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{N}$, a perceptron can be trained using the Rosenblatt algorithm which updates the weights each time step $t = 1, 2, \ldots$:
 	\begin{equation}\label{eq:1:rosenblat}
 		\vec{w}(t+1) = 
 		\begin{cases}
@@ -13,10 +13,12 @@ Where $\mu(t) = 1, 2, \ldots, N, 1, 2, \ldots$ denotes the present pattern. $E(\
 	\begin{equation}\label{eq:1:energyFunction}
 		E^{\mu(t)} = \vec{w}(t) \cdot \xi^{\mu(t)}S^{\mu(t)}.
 	\end{equation}
-The energy function indicates if the perceptron gives the correct output for the given input pattern $\xi^{\mu(t)}$. 
+The energy function indicates if the perceptron gives the correct output for the given input pattern $\xi^{\mu(t)}$. Since we know that independent of the initial value of the weights the perceptron will converge, if the $\mathcal{D}$ is linearly separable, we can start with $\vec{w} = 0$.\\
 
-The update set defined in \autoref{eq:1:rosenblat} is executed until $E^v > 0$ for $v \in [1, N]$ in this cases the algorithm has converged. If the dataset is not linearly separable it will never converge, thus it is generally a good idea to set a maximum number of time steps. 
+The update defined in \autoref{eq:1:rosenblat} is executed until $E^{\xi^i} > 0$ for $i \in [1, N]$ in this cases the algorithm has converged. If the dataset is not linearly separable the perceptron never converges, thus it is generally a good idea to set a maximum number of time steps, $d_{max}$. The total number of steps taken by the algorithm has thus the upper bound $d_{max} \cdot N$. 
 
-The update method \eqref{eq:1:rosenblat} only works for homogeneously separable data sets. To classify a inhomogenously separable dataset one needs to add a one extra input to all patterns, namely minus one and one extra weight, associated with the extra input.
+To classify a inhomogenously separable dataset with a perceptron one needs to add a one extra input to all patterns, namely minus one and one extra weight, associated with the extra input.\\
+
+\todo[inline]{Experimenten uitleggen}
 
 
