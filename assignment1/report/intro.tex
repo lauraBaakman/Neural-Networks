@@ -1,4 +1,22 @@
 %!TEX root = practicum1.tex
-\todo[inline]{Introduction tot het perceptron}
+Artificial neural networks are non-linear mapping systems inspired by biological nervous systems. The most import parts of a biological neuron include a dendrite that receives signals from other neurons, a soma that integrates the signals and generates a response that is distributed via a branching axon. 
+
+An artificial neural network consists of a large numbers of simple processors linked by weighted connections, analogously the neurons. Each processor receives inputs from many other nodes and generates a single scalar output that depends on locally available information. This scalar is distributed as input to other nodes. \\
+
+The most simple case of a neural network is the perceptron, see \autoref{fig:1:perceptron}, This network consists of one layer of input nodes, connected to a processing unit through a single layer of weights, which determine the result of the output node. Mathematically a perceptron is any feed-forward network of noes with responses like $f(\vec{w}^T\vec{x})$ where $\vec{w}$ is the vector of weights, $\vec{x}$ is the pattern and $f$ is a sigmoid-like squashing function\cite{reed1998neural}. This squashing function ensures the binary output of the perceptron. 
+
+\begin{figure}[H]
+	\centering
+	% \includegraphics[width=\textwidth]{./img/1_perceptron}
+	\missingfigure{Perceptron}
+	\caption{A perceptron.}
+	\label{fig:1:perceptron}
+\end{figure}
+
+The perceptron is a linear binary classifier which means that it can only classify data sets that are homogeneously separable, which means that one can separate the data points of different classes with a vector through the origin. Inhomogeneously separable datasets are linearly separable when the separating vector is moved with some offset with respect to the origin.
+
+It can be shown that the perceptron converges, i.e. it separates positive examples for the negatives, if the input data set is linearly separable. 
+
+
 
 

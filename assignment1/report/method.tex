@@ -1,4 +1,22 @@
 %!TEX root = practicum1.tex
-\todo[inline]{Implemenatie pseudo code}
-\todo[inline]{Bewijzen dat het convergeert? Zie boek in slack}
+Given a dataset $\mathcal{D}$ with $N$ patterns $\xi \in \mathcal{R}^d$ each with a label $S$: $\mathcal{D} = \left\{\xi^\mu, S^\mu \right\}_{\mu}^{N}$, a percptron can be trained using the Rosenblatt algorithm which updates the weights each time step $\t = 1, 2, \ldots$:
+	\begin{equation}\label{eq:1:rosenblat}
+		\vec{w}(t+1) = 
+		\begin{cases}
+		\vec{w}(t) + \frac{1}{d} \xi^{\mu(t)} S^{\mu(t)}
+		& \text{if } E^{\mu(t)} \leq 0\\
+		\vec{w}(t) 											
+		& \text{otherwise}\\
+		\end{cases}
+	\end{equation}
+Where $\mu(t) = 1, 2, \ldots, N, 1, 2, \ldots$ denotes the present pattern. $E(\cdot)$ the energy function is defined as:
+	\begin{equation}\label{eq:1:energyFunction}
+		E^{\mu(t)} = \vec{w}(t) \cdot \xi^{\mu(t)}S^{\mu(t)}.
+	\end{equation}
+The energy function indicates if the perceptron gives the correct output for the given input pattern $\xi^{\mu(t)}$. 
+
+The update set defined in \autoref{eq:1:rosenblat} is executed until $E^v > 0$ for $v \in [1, N]$ in this cases the algorithm has converged. If the dataset is not linearly separable it will never converge, thus it is generally a good idea to set a maximum number of time steps. 
+
+The update method \eqref{eq:1:rosenblat} only works for homogeneously separable data sets. To classify a inhomogenously separable dataset one needs to add a one extra input to all patterns, namely minus one and one extra weight, associated with the extra input.
+
 
