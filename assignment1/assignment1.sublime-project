@@ -11,7 +11,7 @@
 			"follow_symlinks": true,
 			"name": "Report",
 			"path": "./report",
-			"file_exclude_patterns": ["*.aux", "*.log", "*.out", "*.synctex.gz", "*.fdb_latexmk", "*.m~"]
+			"file_exclude_patterns": ["*.aux", "*.log", "*.out", "*.synctex.gz", "*.fdb_latexmk", "*.m~", "*-blx.bib", "*.bbl", "*.blg", "*.run.xml"]
 		},
 		{
 			"follow_symlinks": true,
