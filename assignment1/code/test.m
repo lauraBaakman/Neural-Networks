@@ -1,4 +1,4 @@
-function [ q, convs ] = test( n_d, n_max, N, alpha )
+function [ q, number_of_sweeps ] = test( n_d, n_max, N, alpha )
     %Test Summary of this function goes here
     %   Input:
     %       n_d: Number of runs.
@@ -11,15 +11,15 @@ function [ q, convs ] = test( n_d, n_max, N, alpha )
     
     P = round(alpha * N);
     errors = zeros(1, n_d);
-    convs = zeros(1, n_d);
+    number_of_sweeps = zeros(1, n_d);
     for i=1:n_d
         [data, labels] = generate_data(P, N);
         [weights, n_conv] = rosenblatt(data, labels, n_max);
-        convs(i) = n_conv;
+        number_of_sweeps(i) = n_conv;
         errors(i) = error(data, labels, weights);
     end
     q = sum(errors)/n_d;
-    convs = mean(convs);
+    number_of_sweeps = mean(number_of_sweeps);
 end
 
 function[errors] =  error(data, labels, weights)
