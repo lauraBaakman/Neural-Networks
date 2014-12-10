@@ -13,7 +13,7 @@ Where $\mu(t) = 1, 2, \ldots, N, 1, 2, \ldots$ is used to select the next patter
 	\begin{equation}\label{eq:1:energyFunction}
 		E^{\mu(t)} = \vec{w}(t) \cdot \xi^{\mu(t)}S^{\mu(t)}.
 	\end{equation}
-The energy function indicates if the perceptron gives the correct output for the given input pattern $\xi^{\mu(t)}$. Since we know that independent of the initial value of the weights the perceptron will converge, if the $\mathcal{D}$ is linearly separable, the initialization of the weights is irrelevant. We have opted for $\vec{w} = 0$.\\
+The energy function indicates if the perceptron gives the correct output for the given input pattern $\xi^{\mu(t)}$. Since we know that independent of the initial value of the weights the perceptron will converge, if the $\mathcal{D}$ is linearly separable, the initialization of the weights is irrelevant. We have opted for $\vec{w}(0) = 0$.\\
 
 The update defined in \autoref{eq:1:rosenblat} is executed until $E^{\xi^i} > 0$ for $i \in [1, N]$, if this is the case the algorithm has converged. If the dataset is not linearly separable the perceptron never converges, thus it is generally a good idea to set a maximum number epochs, $d_{max}$, where each epoch consists of $N$ steps. The total number of steps taken by the algorithm has thus the upper bound $d_{max} \cdot N$. \\
 

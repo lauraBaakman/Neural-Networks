@@ -27,8 +27,6 @@ function [ weights, n ] = rosenblatt( data, labels, n_max )
         end
         n = n + 1;
     end
-    
-    
 end
 
 function [e] = E (w, p, l)

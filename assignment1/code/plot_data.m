@@ -10,7 +10,7 @@ data_plot = plot(alphas, results, 'Marker', 'o', 'MarkerFaceColor', 'blue', 'Mar
 axis([0.75 3.0 -0.25 1.25])
 xlabel('\alpha = P / N');
 ylabel('Q_{l.s.}');
-saveas(data_plot, '../report/img/Aa_N50_nd500_nmax1000.png');
+% saveas(data_plot, '../report/img/Aa_N50_nd500_nmax1000.png');
 clear all;
 
 %% Assignment b. All N in separate figures. (Workspace: Ab_N25-25-150_Nd75_Nmax250)
@@ -21,7 +21,7 @@ for i = 1:size(results, 1)
    axis([0.75 3.0 -0.25 1.25]);
    xlabel('\alpha = P / N');
    ylabel('Q_{l.s.}');
-   saveas(data_plot, sprintf('../report/img/Ab_N%s_nd75_nmax250.png', num2str(NS(i))));
+%    saveas(data_plot, sprintf('../report/img/Ab_N%s_nd75_nmax250.png', num2str(NS(i))));
 end
 clear all;
 
