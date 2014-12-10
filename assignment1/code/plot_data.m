@@ -22,7 +22,7 @@ clear all;
 load('../workspace/Ab_N25-25-150_Nd75_Nmax250');
 for i = 1:size(results, 1)
    data_plot = figure('name', sprintf('Assignment b. N = %d', NS(i)));
-    plot(alphas, results(i, :), 'Marker', 'o', 'MarkerFaceColor', 'blue', 'MarkerSize', 5);
+   plot(alphas, results(i, :), 'Marker', 'o', 'MarkerFaceColor', 'blue', 'MarkerSize', 5);
    axis([0.75 3.0 -0.25 1.25]);
    xlabel('\alpha = N / d');
    ylabel('Q_{l.s.}');
