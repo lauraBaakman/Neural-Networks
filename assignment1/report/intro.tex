@@ -7,15 +7,13 @@ The most simple case of a neural network is the single-layer perceptron, see \au
 
 % Linear seperability
 The perceptron is a linear binary classifier, which means that is separates classes with a hyperplane, as a consequence perceptrons can only separate linearly separable datasets. We identify two different types of linearly separable datasets: homogeneously separable data sets can be separated by a hyperplane through the origin, inhomogeneously separable data sets cannot be separated by a hyperplane through the origin but they can be separated by a hyperplane if it is offset with a certain bias with respect to the origin. This bias can be incorporated into the network by adding a fixed input of minus one and the bias as the weight connected to this fixed input. Thus we will make no distinction between homogeneously and inhomogeneously separable datasets and talk about linearly separable sets \cite{rojas1996neural}.
-
-It can be shown that the perceptron converges, i.e. it separates positive examples for the negatives, if the input data set is linearly separable.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\columnwidth]{./img/perceptron}
 	\caption{A perceptron.}
 	\label{fig:1:perceptron}
 \end{figure}
+It can be shown that the perceptron converges, i.e. it separates positive examples for the negatives, if the input data set is linearly separable.
 
 \textcite{cover1965geometrical} showed that the probability that a randomly chosen dichotomy  in general position is linearly separable can be proven to be:
 	\begin{equation}\label{eq:1:lsChance}
@@ -27,11 +25,6 @@ It can be shown that the perceptron converges, i.e. it separates positive exampl
 		& \text{otherwise}\\
 		\end{cases}
 	\end{equation}
-
-This result is based on the function $C(N,d)$ that defines the capacity of a hyperplane, i.e. the number of dichotomies it can separate:
-	\begin{equation}\label{eq:2:C}
-		C(n,d) = \sum_{k=0}^{N-1} \binom{N-1}{k} C(1, d - k).
-	\end{equation}
-
+Based on this presented probability one can show that a $d$-input linear has a high probability of being able to learn a random dichotomy on up to $2d$ patterns. When $N < 2d$ generalization may be poor because the network is underconstrained and the solution is unlikely to generalize well to new patterns \cite{reed1998neural}.
 
 In this paper we consider the Rosenblatt algorithm for perceptron training, furthermore we show with two experiments that our implementaion exhibts the mentioned theoretical properties. 
