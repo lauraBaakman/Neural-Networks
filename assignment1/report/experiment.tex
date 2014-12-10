@@ -5,7 +5,7 @@ Since \autoref{eq:1:lsChance} only holds when the points are general position we
 	\end{equation}
 We define $Q_{l.s.}$ as the fraction of data sets where the perceptron found a hyperplane to separate the two classes within the $d_{max}$ epochs.	
 
-\subsection*{Experiment I}
+\subsection*{Experiment I}\label{ssec:experimentI}
 For the first experiment we have sampled 500 50-dimensional from a standard normal distribution. The number of data points per data set is dependent upon \eqref{eq:alpha}, $d_{max}$ was set to 1000. The ratio $Q_{l.s.}$ for different values of $\alpha$ is plotted in \autoref{fig:experiment1:plot}.
 
 \begin{figure}[H]
@@ -21,6 +21,43 @@ For the first experiment we have sampled 500 50-dimensional from a standard norm
 \todo[inline]{Waarom wijkt het resultaat van het experiment af van de theorie}
 
 \subsection*{Experiment II}
+% Observe the behavior of Ql.s. for different system sizes N as well. Does it approach a step function with increasing N? To this end, repeat the above experiments for, say, N = 50 and N = 100.
+
+In this experiment we repeat the previous experiment I (see \vref{ssec:experimentI}), with different sizes for $d$ in order to find if $Q_{l.s.}$ approaches a step function. The resulting plots for this experiment are shown in \vref{fig:2:experiment}. 
+
+\begin{figure*}
+	\centering
+	\begin{subfigure}{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./img/Ab_N50_nd75_nmax250}
+		\caption{$d=50$}
+		\label{fig:2:experiment:N50}
+	\end{subfigure}
+	\begin{subfigure}{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./img/Ab_N75_nd75_nmax250}
+		\caption{$d=75$}
+		\label{fig:2:experiment:N75}
+	\end{subfigure}
+
+	\begin{subfigure}{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./img/Ab_N100_nd75_nmax250}
+		\caption{$d=100$}
+		\label{fig:2:experiment:N100}
+	\end{subfigure}	
+	\begin{subfigure}{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./img/Ab_N125_nd75_nmax250}
+		\caption{$d=125$}
+		\label{fig:2:experiment:N125}
+	\end{subfigure}
+
+	\caption{Number of successful runs $Q_{l.s.}$ depending on $\alpha = N / d$.}
+	\label{fig:2:experiment}
+\end{figure*}
+
+
 
 \todo[inline]{Wat gaan we testen?}
 \todo[inline]{Hoe gaan we het testen?}

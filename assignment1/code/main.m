@@ -23,11 +23,11 @@ clear all; close all force; clc;
 % end
 
 %% Init Test
-% NS = (25:25:150);
-NS = 25;
-alphas = (0.75:0.25:3.0);
-n_d = 50;
-n_max = 100;
+NS = (25:25:150);
+% NS = 25;
+alphas = (0.75:0.05:3.0);
+n_d = 75;
+n_max = 250;
 
 results = zeros(size(NS, 2), size(alphas,2));
 convs = zeros(size(NS, 2), size(alphas,2));

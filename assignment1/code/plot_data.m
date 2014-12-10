@@ -27,11 +27,20 @@ clear all;
 
 %% Assignment b. All N in one figure. (Workspace: Ab_N25-25-150_Nd75_Nmax250)
 % This part is broken.........
-% load('../workspace/Ab_N25-25-150_Nd75_Nmax250');
-% figure('name', 'Assignment b. N = [25:25:150]');
-% data_plot = plot(alphas, results, 'Marker', 'o', 'MarkerFaceColor', 'blue', 'MarkerSize', 10);
-% axis([0.75 3.0 -0.25 1.25]);
-% xlabel('\alpha = P / N');
-% ylabel('Q_{l.s.}');
-% saveas(data_plot, '../report/img/Ab_N25-25-150_nd75_nmax250.png');
-% clear all;
+load('../workspace/Ab_N25-25-150_Nd75_Nmax250');
+figure('name', 'Assignment b. N = [25:25:150]');
+
+data_plot = plot(alphas, results);
+axis([0.75 3.0 -0.25 1.25]);
+xlabel('\alpha = N / d');
+ylabel('Q_{l.s.}');
+
+legend('N = 25', 'N = 50', 'N = 75', 'N = 100', 'N = 125', 'N = 150');
+
+saveas(data_plot, '../report/img/Ab_N25-25-150_nd75_nmax250.png', 'png');
+clear all;
+
+%%
+figure()
+syms x;
+ezplot(heaviside(x), [-2, 2]);
