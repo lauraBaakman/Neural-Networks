@@ -11,14 +11,15 @@ For the first experiment we have sampled 500 50-dimensional from a standard norm
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\columnwidth]{./img/Aa_N50_nd500_nmax1000}
-	\caption{The parameter $\alpha$ versus $Q_{l.s.}$.}
+	\caption{The found relation between $\alpha$ and $Q_{l.s.}$, shown in blue, and the theoretical relation in red.}
 	\label{fig:experiment1:plot}
 \end{figure}
 
-\Cref{fig:experiment1:plot} shows that while $\alpha = 1$ $Q_{l.s.}$ is also one, \todo{Why is this correct}. 
+Using that $d = 50$  and substituting \eqref{eq:alpha} into the condition of the first case of \eqref{eq:1:lsChance} we find that $f(N,d)$ should be one for $\alpha \leq 1.02$. This fits with our results, which show that $Q_{l.s.}$ is one for all tested values of $\alpha$ that are smaller than or equal to 1.02. 
 
-\todo[inline]{Resultaat experiment beschrijven}
-\todo[inline]{Waarom wijkt het resultaat van het experiment af van de theorie}
+For $\alpha \in [1.5, 2.5]$ we find that the empirical $Q_{l.s.}$ is a bit lower than the theoretical value. The first of two possible causes is that the parameter $d_{max}$ was set too low. The perceptron convergence theorem states that the perceptron eventually converges, not necessarily after 500 steps. Another possible explanation is the fact that we are talking about chances, and that we just happened to get higher proportion of non-linearly separable datasets than theory predicts. 
+
+For $\alpha \geq 2.5$ we find that the theoretical and empirical results coincide once again this is due to $f(N,d)$ approaching zero.
 
 \subsection*{Experiment II}
 % Observe the behavior of Ql.s. for different system sizes N as well. Does it approach a step function with increasing N? To this end, repeat the above experiments for, say, N = 50 and N = 100.
