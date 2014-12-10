@@ -41,6 +41,5 @@ xlabel('\alpha = N / d');
 ylabel('Q_{l.s.}');
 
 legend('N = 25', 'N = 50', 'N = 75', 'N = 100', 'N = 125', 'N = 150');
-
 % saveas(data_plot, '../report/img/Ab_N25-25-150_nd75_nmax250.png', 'png');
 clear all;

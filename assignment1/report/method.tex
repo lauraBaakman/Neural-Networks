@@ -1,5 +1,5 @@
 %!TEX root = practicum1.tex
-Given a dichotomy $\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{N}$ with $N$ $d$-dimensional patterns $\xi \in \mathcal{R}^d$, each with a label $S \in \left\{-1, +1 \right\}$, a perceptron can be trained using the Rosenblatt algorithm \todo[inline]{Add a reference to the Rosenblatt algorithm} which updates the weights each time step $t = 1, 2, \ldots$:
+Given a dichotomy $\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{N}$ with $N$ $d$-dimensional patterns $\xi \in \mathcal{R}^d$, each with a label $S \in \left\{-1, +1 \right\}$, a perceptron can be trained using the Rosenblatt algorithm 
 	\begin{equation}\label{eq:1:rosenblat}
 		\vec{w}(t+1) = 
 		\begin{cases}
@@ -17,18 +17,6 @@ The energy function indicates if the perceptron gives the correct output for the
 
 The update defined in \autoref{eq:1:rosenblat} is executed until $E^{\xi^i} > 0$ for $i \in [1, N]$, if this is the case the algorithm has converged. If the dataset is not linearly separable the perceptron never converges, thus it is generally a good idea to set a maximum number epochs, $d_{max}$, where each epoch consists of $N$ steps. The total number of steps taken by the algorithm has thus the upper bound $d_{max} \cdot N$. \\
 
-
-\todo[inline]{Dit stukje naar de intro verplaatsen, bij het linearly separable stukje}
-\textcite{cover1965geometrical} showed that the probability that a randomly chosen dichotomy  in general position is linearly separable can be proven to be:
-	\begin{equation}\label{eq:1:lsChance}
-		f(N,d) = 
-		\begin{cases}
-		1
-		& N \leq d + 1\\
-		\frac{2}{2^N} \displaystyle\sum_{k = 0}^{d} \binom{N - 1}{k}										
-		& \text{otherwise}\\
-		\end{cases}
-	\end{equation}
-To verify this theoretical result we have performed two experiments.
+To test if our implementation of the perceptron exhibts this theoretical property we have performed two experiments. The first is concerned with the implications of \autoref{eq:1:lsChance}, the second with the approximation to the step function.
 
 
