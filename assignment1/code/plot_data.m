@@ -8,7 +8,7 @@ load('../workspace/Aa_N50_Nd500_Nmax1000');
 figure('name', 'Assignment a.');
 data_plot = plot(alphas, results, 'Marker', 'o', 'MarkerFaceColor', 'blue', 'MarkerSize', 10);
 axis([0.75 3.0 -0.25 1.25])
-xlabel('\alpha = P / N');
+xlabel('\alpha = N / d');
 ylabel('Q_{l.s.}');
 saveas(data_plot, '../report/img/Aa_N50_nd500_nmax1000.png');
 clear all;
@@ -19,7 +19,7 @@ for i = 1:size(results, 1)
    figure('name', sprintf('Assignment b. N = %d', NS(i)));
    data_plot = plot(alphas, results(i, :), 'Marker', 'o', 'MarkerFaceColor', 'blue', 'MarkerSize', 10);
    axis([0.75 3.0 -0.25 1.25]);
-   xlabel('\alpha = P / N');
+   xlabel('\alpha = N / d');
    ylabel('Q_{l.s.}');
    saveas(data_plot, sprintf('../report/img/Ab_N%s_nd75_nmax250.png', num2str(NS(i))));
 end
