@@ -19,22 +19,16 @@ Using that $d = 50$  and substituting \eqref{eq:alpha} into the condition of the
 
 For $\alpha \in [1.5, 2.5]$ we find that the empirical $Q_{l.s.}$ is a bit lower than the theoretical value. The first of two possible causes is that the parameter $d_{max}$ was set too low. The perceptron convergence theorem states that the perceptron eventually converges, not necessarily after 500 steps. Another possible explanation is the fact that we are talking about chances, and that we just happened to get higher proportion of non-linearly separable datasets than theory predicts. 
 
-For $\alpha \geq 2.5$ we find that the theoretical and empirical results coincide once again this is due to $f(N,d)$ approaching zero.
+For $\alpha \geq 2.5$ we find that the theoretical and empirical results coincide once again, this is due to $f(N,d)$ approaching zero.
 
 \subsection*{Experiment II}
 % Observe the behavior of Ql.s. for different system sizes N as well. Does it approach a step function with increasing N? To this end, repeat the above experiments for, say, N = 50 and N = 100.
 
-In this experiment we repeat the previous experiment I, with different sizes for $d$ in order to find if $Q_{l.s.}$ approaches the step function. The resulting plots of this experiment and the step function are shown in \vref{fig:2:experiment}. In the images in \cref{fig:2:experiment} we can see that when we the dimensionality increases the 
+In this experiment we repeat the previous experiment I, with different sizes for $d$ in order to find if $Q_{l.s.}$ approaches the step function. The resulting plots of this experiment and the step function are shown in \vref{fig:2:experiment}. We can see when the dimensionality increases and we keep the proportion $\alpha = N/d$, that $N$ will approach $\infty$, and the plots shown in \cref{fig:2:experiment} will approach the step function, this follows the theory from \textcite{cover1965geometrical} presented in the introduction. The reasons why the empirical $Q_{l.s.}$ are a bit lower than the theoretical values are the same reasons as stated at the end of experiment I.
 
-\begin{figure*}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{./img/assignmentb}
-	\caption{Number of successful runs $Q_{l.s.}$ with different $d$}
+	\includegraphics[width=\columnwidth]{./img/assignmentb}
+	\caption{Number of successful runs $Q_{l.s.}$ with different $d$ and the step function drawn in black.}
 	\label{fig:2:experiment}
-\end{figure*}
-
-
-\todo[inline]{Wat gaan we testen?}
-\todo[inline]{Hoe gaan we het testen?}
-\todo[inline]{Wat zijn onze onze resultaten}
-\todo[inline]{In hoeverre kloppen de resultaten?}
+\end{figure}
