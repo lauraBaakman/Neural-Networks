@@ -8,4 +8,24 @@ function [] = minover(data, labels, P, n_max)
         %   N_MAX: The number of 'sweeps' to perform, the total number of
         %   steps is N_MAX x P.
         
+        D = size(data, 1);
+        N = size(data, 2);
+        t_max = n_max * P;
+        t = 0;
+        
+        weights = ones(1, N);
+        while not_converged && t < t_max
+            t = 1 + 1;
+            mu = find_example_with_lowest_stability(data, labels, weights);
+            current_pattern = data(mu, :);
+            current_label = labels(mu, :);
+            weights = weights + 1/n * current_pattern * current_label;
+        end
+end
+        
+
+function [idx] = find_example_with_lowest_stability(data, labels, weights)
+    stabilities = ((weights * data') .* labels')./norm(weights);
+    [~, idx] = min(stabilities);
+end
         

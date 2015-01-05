@@ -15,7 +15,5 @@ labels = w_star * data';
 labels(labels > 0) = 1;
 labels(labels < 0) = -1;
 
-%% Compute perceptron
+%% Min-over
 minover(data, labels', P, n_max);
-
-
