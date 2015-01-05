@@ -7,3 +7,5 @@ function [] = minover(data, labels, P, n_max)
         %   before terminating the algorithm.
         %   N_MAX: The number of 'sweeps' to perform, the total number of
         %   steps is N_MAX x P.
+        
+        
