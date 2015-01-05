@@ -6,6 +6,7 @@ addpath('../../assignment1/code');
 N = 10;
 n_max = 500;
 n_d = 10;
+error = 0.05;
 
 % alphas = 0.1: 0.1: 5.0;
 alphas = [1.5];
@@ -18,14 +19,14 @@ w_star = ones(1, N);
 %% Min-over
 for idx=1:size(alphas, 2)
     P = round(alphas(idx) * N);
-    g_errors = zeros(P * n_max, 1);
+    g_errors = -1 * ones(P * n_max, 1);
     for it = 1:n_d
         [data, ~] = generate_data(P, N);
         labels = w_star * data';
         labels(labels > 0) = 1;
         labels(labels < 0) = -1;
         
-        [weight, g_error] =  minover(data, labels', n_max, w_star);
+        [weight, g_error] =  minover(data, labels', n_max, w_star, error);
         
         g_errors = g_errors + g_error;
         
