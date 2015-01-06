@@ -5,4 +5,11 @@ Given a dichotemy $\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{N}$, $N$ $d$-di
 \end{equation}
 The $\vec{w}^*$ can be chosen randomly or could be fixed, without loss of generality because the optimal solution is unique. \todo[inline]{because reasons... ofzo}.
 
-The Minover algorithm  
+The Minover algorithm runs over a period of time $t$ until either the stability of the solution does not change anymore or the number of maximal time steps $t_{max}$ is reached. The  stability is defined as: 
+\begin{equation}\label{eq:method:maximum_stability}
+\mathnormal{k}(t) = \frac{\vec{w}(t) \cdot \vec{\xi}^v S^v}{|\vec{w}(t)|}
+\end{equation} \todo[inline]{v}
+The formula in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. To find the maximal stability, at every time step, the algorithm selects the pattern with the smallest distance to the current solution. Then the formula in \eqref{eq:method:update} is used to update the $\vec{w(t + 1)}$.
+\begin{equation}\label{eq:method:update}
+	\vec{w}(t + 1) = \vec{w}(t) + \frac{1}{N} \xi^{\mu(t)} S^{\mu(t)} 
+\end{equation}\todo[inline]{$\mu(t)$}
