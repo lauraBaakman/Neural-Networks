@@ -1,6 +1,6 @@
 %!TEX root = practicum2.tex
 Given a dichotemy $\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{P}$, $P$ $N$-dimensional patterns $\xi \in \mathcal{R}^N$, each with in contrast to the Rosenblatt algorithm where the labels were assigned randomly, a training label is defined by a teacher perceptron as:
-\begin{equation}
+\begin{equation}\label{eq:method:teacher_label}
 	S^\mu = \text{sign}(\vec{w}^* \cdot {\vec{\xi}}^{\mu})
 \end{equation}
 The $\vec{w}^*$ can be chosen randomly or could be fixed, without loss of generality because the optimal solution is unique. \todo[inline]{because reasons... ofzo}.
@@ -13,6 +13,10 @@ The formula in \eqref{eq:method:maximum_stability} can be thought of as the dist
 \begin{equation}\label{eq:method:update}
 	\vec{w}(t + 1) = \vec{w}(t) + \frac{1}{N} \xi^{\mu(t)} S^{\mu(t)} 
 \end{equation}\todo[inline]{$\mu(t)$}
+
+\todo[inline]{Iets met $P$ }
+
+
 
 \begin{equation}\label{eq:method:generalization_error}
 	\epsilon_g(t) = \frac{1}{\pi} arccos \bigg(\frac{\vec{w}(t) \cdot \vec{w}^*}{|\vec{w}(t)| |\vec{w}^*|}\bigg)
