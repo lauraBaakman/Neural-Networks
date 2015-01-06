@@ -1,6 +1,11 @@
 %!TEX root = practicum2.tex
-The first perceptron was designed by Rosenblatt in 1957 one of the variations inspired by this is called the Minover algorithm by Krauth and Mezard, 1987. \todo[inline]{Real reference}  The aim of the Minover algorithm is to find the largest margin between two separable classes to ensure that when using the perceptron during classification, the chance that the perceptron classifies the data point correctly is higher than when a non-optimal solution is used. The image in figure xa. illustrates the use of an optimal solution as apposed to using an non-optimal solution, shown in xb.
+The perceptron introduced by \citeauthor{rosenblanttperceptron} inspired many variations, one of those is the Minover algorithm by \citeauthor{krauth1987learning}. This algorithm aims to find the largest possible margin between two linearly separable classes. \Cref{fig:1:optimalSolution} illustrates the optimal separation between two classes according to the Minover algorithm and the area of all suboptimal separations that classify each available pattern correctly. 
 
-\todo[inline]{Plaatje xa. Optimal Minover solution vs Plaatje xb. Standard non-optimal solution }
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{./img/optimalboundary-01}
+	\caption{The separation of two classes, with the optimal boundary shown as the line. All suboptimal separations of the the two classes that separate the points correctly lie in the shaded area. The support vectors are indicated by the symbols with a border.}
+	\label{fig:1:optimalSolution}
+\end{figure}
 
-\todo[inline]{Bla bla bla bla, bla bla bla bla. Bla bla bla.}
+\Cref{fig:1:optimalSolution} illustrates that the optimal boundary is determined by only three points, the support vectors, indicated by symbols with a border in \cref{fig:1:optimalSolution}. Changing the location of the other patterns does not influence the optimal decision boundary as long as they do not fall within the separation area.
