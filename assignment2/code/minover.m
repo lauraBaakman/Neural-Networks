@@ -37,7 +37,7 @@ function [idx] = find_example_with_lowest_stability(data, labels, weights)
 end
 
 function [ret] = not_converged(generalization_errors, error)
-    difference = abs(generalization_errors - repmat(generalization_errors(end), size(generalization_errors, 1), 1));
+   difference = abs(generalization_errors - repmat(generalization_errors(end), size(generalization_errors, 1), 1));
    ret = sum(sum(difference > error));
 end
 

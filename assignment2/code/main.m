@@ -73,8 +73,8 @@ fig = figure();
 plot(alphas, final_g_errors, 'bo-', 'MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', 10);
 xlabel('alpha')
 ylabel('generalization error')
-saveas(fig, '../report/img/finalgeneralizationerrors.png');
+% saveas(fig, '../report/img/finalgeneralizationerrors.png');
 
 
 
-save('workspace');
+% save('workspace');
