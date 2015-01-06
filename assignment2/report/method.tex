@@ -9,7 +9,11 @@ The Minover algorithm runs over a period of time $t$ until either the stability 
 \begin{equation}\label{eq:method:maximum_stability}
 \mathnormal{k}(t) = \frac{\vec{w}(t) \cdot \vec{\xi}^v S^v}{|\vec{w}(t)|}
 \end{equation} \todo[inline]{v}
-The formula in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. To find the maximal stability, at every time step, the algorithm selects the pattern with the smallest distance to the current solution. Then the formula in \eqref{eq:method:update} is used to update the $\vec{w(t + 1)}$.
+The formula in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. To find the maximal stability, at every time step the algorithm selects the pattern with the smallest distance to the current solution. Then the formula in \eqref{eq:method:update} is used to update the $\vec{w(t + 1)}$.
 \begin{equation}\label{eq:method:update}
 	\vec{w}(t + 1) = \vec{w}(t) + \frac{1}{N} \xi^{\mu(t)} S^{\mu(t)} 
 \end{equation}\todo[inline]{$\mu(t)$}
+
+\begin{equation}\label{eq:method:generalization_error}
+	\epsilon_g(t) = \frac{1}{\pi} arccos (\frac{\vec{w}(t) \cdot \vec{w}^*}{|\vec{w}(t)| |\vec{w}^*}|)
+\end{equation}
