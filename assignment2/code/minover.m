@@ -1,4 +1,4 @@
-function [ weights, generalization_errors ] = minover(data, labels, n_max, w_star, error)
+function [ weights, generalization_errors, difference_weights ] = minover(data, labels, n_max, w_star, error)
     %MINOVER algorithm to train a perceptron.
     %   INPUT
     %   DATA: P x N matrix with P vectors of dimension N.
@@ -17,13 +17,16 @@ function [ weights, generalization_errors ] = minover(data, labels, n_max, w_sta
     weights = zeros(1, N);
     generalization_errors = zeros(t_max, 1);
     generalization_errors(1) = 1;
+    difference_weights = zeros(t_max, N);
     
     while t < P || (not_converged(generalization_errors(t - P + 1: t), error) && t < t_max)
         t = t + 1;
         mu = find_example_with_lowest_stability(data, labels, weights);
         current_pattern = data(mu, :);
         current_label = labels(mu, :);        
+        old_weights = weights;
         weights = weights + 1/N * current_pattern * current_label;
+        difference_weights(t, :) = old_weights - weights;
         generalization_errors(t) = generalization_error(weights, w_star);
     end
     generalization_errors(t+1:end) = NaN;
