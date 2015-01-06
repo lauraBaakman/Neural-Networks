@@ -3,6 +3,8 @@ The performance of the perceptron trained with the Minover algorithm can be meas
 
 \Cref{fig:exp:finalgeneralizationError} shows the final generalization error for different values of $\alpha$ as an average of 10 iterations with each $\alpha$. We consider a generalization error final when it has converged or when $t_{max}$ has been reached. 
 
+
+\todo[inline]{Relatie tussen $\alpha$ en de generalisatie error.}
 ~\\
 
 \begin{figure}[H]
@@ -16,9 +18,11 @@ The performance of the perceptron trained with the Minover algorithm can be meas
 
 One possible explanation for these oscillations is that the optimal weights cannot be formulated as a linear combination of the support vectors. In this case the algorithm continues to add and subtract vectors from the weights, resulting in a constantly changing generalization error. Since our convergence criterion is the stabilization of the generalization error for $P$ steps, these oscillations prevent convergence. 
 
+\todo[inline]{Waarom hebben kleinere datasets minder lang nogdig om te convergeren?}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\columnwidth]{./img/N5NMAX500error3}
-	\caption{Learning curve for different $\alpha$ for $N = 10$, and $\varepsilon = 0.0005$ and $n_{max} = 500$.}
+	\caption{Learning curve for different $\alpha$ for $N = 5$, and $\varepsilon = 0.0005$ and $n_{max} = 500$.}
 	\label{fig:exp:learningcurve}
 \end{figure}
