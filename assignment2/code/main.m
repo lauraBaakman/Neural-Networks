@@ -9,13 +9,13 @@ set(0,'defaultlinelinewidth', 2)
 % matlabpool('open', 4);
 
 %% Init
-N = 5;
+N = 10;
 n_max = 500;
-n_d = 1;
+n_d = 20;
 error = 0.0005;
 
-% alphas = 0.1:0.1:5.0;
-alphas = 0.5:0.5:2;
+alphas = 0.1:0.1:5.0;
+% alphas = 0.5:0.5:2;
 
 %% Generate data and compute labels
 w_star = ones(1, N);
@@ -24,7 +24,7 @@ g_errors = zeros(max(alphas) * N * n_max, size(alphas, 2));
 final_g_errors = zeros(size(alphas,2), 1);
 
 %% Min-over
-for idx=1:size(alphas, 2)
+parfor idx=1:size(alphas, 2)
     P = ceil(alphas(idx) * N);
     g_errors_temp = zeros(P * n_max, n_d);
     for it = 1:n_d
@@ -45,28 +45,28 @@ for idx=1:size(alphas, 2)
 %         1 - sum(c_labels == labels) / P
     end
     final_g_errors(idx) = mean(final_g_error_temp);
-    g_errors(1:P * n_max, idx) = nanmean(g_errors_temp, 2);
-    g_errors(P * n_max + 1:end, idx) = NaN;    
+%     g_errors(1:P * n_max, idx) = nanmean(g_errors_temp, 2);
+%     g_errors(P * n_max + 1:end, idx) = NaN;    
 end
 
 % matlabpool('close');
 
-%% Plot 1
-
-% Get a subset of the data
-x = 1:2:size(g_error, 1);
-g_errors_to_plot = g_errors(x, :);
-
-% Remove NaNs
-g_errors_to_plot( all( isnan( g_errors_to_plot ), 2 ), : ) = [];
-
-fig = figure();
-semilogx(g_errors_to_plot);
-xlabel('3 * t')
-ylabel('generalization error')
-h_leg = legend(cellstr(num2str(alphas', '%.2f')))
-set(h_leg,'FontSize',18);
-saveas(fig, '../report/img/N5NMAX500error3.png');
+% %% Plot 1
+% 
+% % Get a subset of the data
+% x = 1:2:size(g_error, 1);
+% g_errors_to_plot = g_errors(x, :);
+% 
+% % Remove NaNs
+% g_errors_to_plot( all( isnan( g_errors_to_plot ), 2 ), : ) = [];
+% 
+% fig = figure();
+% semilogx(g_errors_to_plot);
+% xlabel('3 * t')
+% ylabel('generalization error')
+% h_leg = legend(cellstr(num2str(alphas', '%.2f')))
+% set(h_leg,'FontSize',18);
+% % saveas(fig, '../report/img/N5NMAX500error3.png');
 
 %% Plot 2
 
@@ -78,4 +78,4 @@ ylabel('generalization error')
 
 
 
-% save('workspace');
+save('workspace');
