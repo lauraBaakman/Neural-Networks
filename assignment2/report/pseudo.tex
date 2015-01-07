@@ -1,0 +1,28 @@
+%!TEX root = practicum2.tex		
+
+\begin{algorithm}
+	\setstretch{1.2}
+	\SetAlgoShortEnd
+	\DontPrintSemicolon
+	\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+	\Input{
+		$\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{P}$, $\forall i \; \xi^i \in \mathcal{R}^{N}$\\
+		$n_{max}$ maximum number of epochs\\
+		$\vec{w}^*$ the teacher weights
+	}
+	\Output{$\vec{w}$ the student weights}
+	\BlankLine
+
+	$t_{max}$ := $n_{max} \cdot P$\;
+	$t$ := 0\;
+	$\vec{w}$ := $[0, \dotsc, 0]^T$ \tcc*{$\vec{w} \in \mathcal{R}^N$}
+
+	\While{$t < t_{max}$ $\land$ \FuncSty{notConverged()}}{
+		find $\mu(t)$ such that $\mathnormal{k}^{\mu(t)} = \displaystyle\min_\nu \left\{ \mathnormal{k}^{\nu}(t) \right\}$\;
+		$\vec{w}(t + 1) = \vec{w}(t) + \dfrac{1}{N} \cdot \xi^{\mu(t)} \cdot S^{\mu(t)}$\;
+		$t$ := $t + 1$
+	}
+	\caption{$minover(\mathcal{D}, n_{max}, \vec{w})$\label{alg:method:minnover}}
+\end{algorithm}
+
+The function \texttt{minover} presented in \autoref{alg:method:minnover} shows how the one can train a perceptron using the Minimal Overlap learning rule. The method \texttt{notConverged} compares the generalization error \eqref{eq:method:generalization_error} of the last $P$ iterations, as explained earlier. 
