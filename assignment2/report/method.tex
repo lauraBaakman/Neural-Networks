@@ -1,22 +1,28 @@
 %!TEX root = practicum2.tex
-Given a dichotemy $\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{P}$, $P$ $N$-dimensional patterns $\xi \in \mathcal{R}^N$, each with in contrast to the Rosenblatt algorithm where the labels were assigned randomly, a training label is defined by a teacher perceptron as:
+Given a dichotemy $\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{P}$, $P$ $N$-dimensional patterns $\xi \in \mathcal{R}^N$, each with in contrast to the Rosenblatt algorithm where the labels were assigned randomly, a training label defined by a teacher perceptron as:
+
 \begin{equation}\label{eq:method:teacher_label}
 	S^\mu = \text{sign}(\vec{w}^* \cdot {\vec{\xi}}^{\mu})
 \end{equation}
+
 The $\vec{w}^*$ can be chosen randomly or could be fixed, without loss of generality because the optimal solution is unique. \todo[inline]{because reasons... ofzo}.
 
-The Minover algorithm runs over a period of time $t$ until either the stability of the solution does not change anymore or the number of maximal time steps $t_{max}$ is reached. The  stability is defined as: 
+The Minover algorithm is an iterative procedure that runs over a period of time $t = 0$, $1$, $2$,... until either the stability of the solution does not change anymore or the number of maximal time steps $t_{max}$ is reached. We define the stability as not changing anymore when the last $P$ calculated weights their differences are zero plus and minus a certain error $\varepsilon$. The  stability is defined as: 
+
 \begin{equation}\label{eq:method:maximum_stability}
 \mathnormal{k}(t) = \frac{\vec{w}(t) \cdot \vec{\xi}^v S^v}{|\vec{w}(t)|}
 \end{equation} \todo[inline]{v}
-The formula in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. To find the maximal stability $w_{max}$, at every time step the algorithm selects the pattern with the smallest distance to the current solution. Then the formula in \eqref{eq:method:update} is used to update the $\vec{w(t + 1)}$.
+
+The stability formula in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. To find the maximal stability $w_{max}$, at every time step the algorithm selects the pattern with the smallest distance to the current solution. Then the formula in \eqref{eq:method:update} is used to update the weight vector $\vec{w(t + 1)}$ for the next time step.
+
 \begin{equation}\label{eq:method:update}
 	\vec{w}(t + 1) = \vec{w}(t) + \frac{1}{N} \xi^{\mu(t)} S^{\mu(t)} 
 \end{equation}\todo[inline]{$\mu(t)$}
 
-When a solution is found the minover algorithm does not stop, it uses the generalization error in \eqref{eq:method:generalization_error} to check whether the solution is still changing or that the optimal solution has been found. In the implementation this is done by checking if the solution has not changed much for the last $P$ time steps. 
+As stated before Minover in contrast to Rosenblatt does not stop when a solution is found, in our implementation we use the generalization error from \eqref{eq:method:generalization_error} to check whether the algorithm has converged and we can stop. This makes more sense then using the weights (as stated in the assignment) because we want to know how well to check the angle between the student (current solution $\vec{w}(t)$) and the teacher, when this angle does not change (much) anymore we can stop.  \todo[inline]{plaatje}
 
 \begin{equation}\label{eq:method:generalization_error}
 	\epsilon_g(t) = \frac{1}{\pi} \arccos \bigg(\frac{\vec{w}(t) \cdot \vec{w}^*}{|\vec{w}(t)| |\vec{w}^*|}\bigg)
 \end{equation}
+
 
