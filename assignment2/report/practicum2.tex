@@ -66,6 +66,15 @@
 % Other commands
 \renewcommand{\t}[1]{\texttt{#1}}
 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
 \title{Neural Networks\\Practical Assignment 2: Learning a Rule}
 \author{Rick van Veen (s1883933) \and Laura Baakman (s1869140)}
 

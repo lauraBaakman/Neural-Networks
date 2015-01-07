@@ -1,28 +1,38 @@
 %!TEX root = practicum2.tex
-Given a dichotemy $\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{P}$, $P$ $N$-dimensional patterns $\xi \in \mathcal{R}^N$, each with in contrast to the Rosenblatt algorithm where the labels were assigned randomly, a training label defined by a teacher perceptron as:
+Given a dichotemy $\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{P}$ with $P$ $N$-dimensional patterns $\xi \in \mathcal{R}^N$. The labels $S$ were assigned by a teacher perceptron according to:
 
 \begin{equation}\label{eq:method:teacher_label}
 	S^\mu = \text{sign}(\vec{w}^* \cdot {\vec{\xi}}^{\mu})
 \end{equation}
 
-The $\vec{w}^*$ can be chosen randomly or could be fixed, without loss of generality because the optimal solution is unique. \todo[inline]{because reasons... ofzo}.
-
-The Minover algorithm is an iterative procedure that runs over a period of time $t = 0$, $1$, $2$,... until either the stability of the solution does not change anymore or the number of maximal time steps $t_{max}$ is reached. We define the stability as not changing anymore when the last $P$ calculated generalization errors differentiate less than zero plus and minus a certain error $\varepsilon$. The  stability is defined as: 
-
-\begin{equation}\label{eq:method:maximum_stability}
-\mathnormal{k}^v(t) = \frac{\vec{w}(t) \cdot \vec{\xi}^v S^v}{|\vec{w}(t)|} \text{, for all examples } v
+The teacher $\vec{w}^*$ can be chosen randomly as long as the following condition holds:
+\begin{equation}\label{eq:method:teachervectorcondition}
+	\norm{\vec{w}^*}^2 = N.
 \end{equation}
 
-The stability formula in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. To find the maximal stability $w_{max}$, at every time step the algorithm selects the pattern $\mu(t)$ with the minimal distance/stability (minimal overlap) to the current solution. Then the formula in \eqref{eq:method:update} is used to update the weight vector $\vec{w}(t + 1)$ for the next time step.
+The Minover algorithm is an iterative procedure that runs over a period of time $t = 0, 1, 2, \dotsc, t_{max}$ until either the stability of the solution does not change anymore for $P$ steps or the number of maximal time steps $t_{max} = n_{max} \cdot P$ has been reached reached. Where $n_{max}$ is comparable to the number of epochs in the Rosenblatt algorithm. The stability of a pattern $\xi$ with label $S$ given a certain weight vector $\vec{w}$ is defined as:
+
+\begin{equation}\label{eq:method:maximum_stability}
+	\mathnormal{k} = \frac{\vec{w} \cdot \vec{\xi} \cdot S}{\norm{\vec{w}}}.
+\end{equation}
+
+We say that the stability has converged when the last $P$ calculated generalization errors\eqref{eq:method:generalization_error} differentiate less than $0 \pm \varepsilon$.\\
+
+The stability defined in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. To eventually find the weight vector with maximal stability the algorithm takes the following two steps every iteration: it selects the pattern $\mu(t)$ with the minimal distance/stability (minimal overlap) to the current solution. The current weight vector $\vec{w}(t)$ is then updated with Hebb's rule, see \eqref{eq:method:update}.
 
 \begin{equation}\label{eq:method:update}
 	\vec{w}(t + 1) = \vec{w}(t) + \frac{1}{N} \xi^{\mu(t)} S^{\mu(t)} 
 \end{equation}
 
+See \autoref{alg:method:minnover} for the pseudo code of the procedure described above. The method \texttt{notConverged} compares the generalization error \eqref{eq:method:generalization_error} of the last $P$ iterations, as explained earlier. 
+
+\input{pseudo}
+
+The earlier mentioned generalization error $\epsilon$ gives the probability that the teacher vector $\vec{w}^*$ and the student vector $\vec{w}$ disagree:
+
 \begin{equation}\label{eq:method:generalization_error}
-	\epsilon_g(t) = \frac{1}{\pi} \arccos \bigg(\frac{\vec{w}(t) \cdot \vec{w}^*}{|\vec{w}(t)| |\vec{w}^*|}\bigg)
+	\epsilon = \frac{1}{\pi} \arccos \left(\frac{\vec{w} \cdot \vec{w}^*}{\norm{\vec{w}} \norm{\vec{w}^*}}\right).
 \end{equation}
 
 As stated before Minover in contrast to Rosenblatt does not stop when a solution is found, in our implementation we use the generalization error from \eqref{eq:method:generalization_error} to check for convergence and we can stop. This makes more sense then using the weights (as stated in the assignment) because the generalization error gives the probability of disagreement which is a better indication of how well the student has learned from the teacher than the weights. This is illustrated in the image shown in ...\todo[inline]{plaatje}
 
-\input{pseudo}
