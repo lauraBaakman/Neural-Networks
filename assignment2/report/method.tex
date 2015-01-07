@@ -31,8 +31,17 @@ See \autoref{alg:method:minnover} for the pseudo code of the procedure described
 The earlier mentioned generalization error $\epsilon$ gives the probability that the teacher vector $\vec{w}^*$ and the student vector $\vec{w}$ disagree:
 
 \begin{equation}\label{eq:method:generalization_error}
-	\epsilon = \frac{1}{\pi} \arccos \left(\frac{\vec{w} \cdot \vec{w}^*}{\norm{\vec{w}} \norm{\vec{w}^*}}\right).
+	\epsilon = \frac{2\phi}{2\pi} = \frac{1}{\pi} \arccos \left(\frac{\vec{w} \cdot \vec{w}^*}{\norm{\vec{w}} \norm{\vec{w}^*}}\right).
 \end{equation}
 
-As stated before Minover in contrast to Rosenblatt does not stop when a solution is found, in our implementation we use the generalization error from \eqref{eq:method:generalization_error} to check for convergence and we can stop. This makes more sense then using the weights (as stated in the assignment) because the generalization error gives the probability of disagreement which is a better indication of how well the student has learned from the teacher than the weights. This is illustrated in the image shown in ...\todo[inline]{plaatje}
+The parameter $\phi$ mentioned iin \eqref{eq:method:generalization_error} is the angle between the teacher and student vector, shown in \cref{fig:methode:generalizationError}. The probability of a different classification by the two vectors is indicated by the shaded area of the unit circle in \cref{fig:methode:generalizationError}.\\
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=1]{./img/generalizationError}
+	\caption{The difference between the student vector $\vec{w}$ and the weight vector $\vec{w}^*$.}
+	\label{fig:methode:generalizationError}
+\end{figure}
+
+As stated before Minover contray to Rosenblatt does not stop when a solution is found but continues until the solution with optimal stability is found.
 
