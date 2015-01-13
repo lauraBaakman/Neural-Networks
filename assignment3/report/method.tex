@@ -8,7 +8,7 @@ We train the network on a data set with $P$ $N$-dimensional patterns with real v
 \begin{equation}\label{eq:1:cost}
 	E = \frac{1}{P} \sum_{\mu = 1}^{P} e^\mu
 \end{equation}
-Where $e^\mu$ is the contribution of one of the $P$ patterns $\xi^\mu$ too the cost function \eqref{eq:1:cost}:
+Where $e^\mu$ is the contribution of one of the $P$ patterns $\xi^\mu$ to the cost function \eqref{eq:1:cost}:
 \begin{equation}\label{eq:1:contribution}
 	e^\mu = \frac{1}{2}\left(\sigma\left(\vec{\xi}^\mu\right) - \tau\left(\vec{\xi}^\mu\right)\right)^2
 \end{equation}
@@ -18,7 +18,7 @@ This term is used to update the weight vectors according to:
 \end{align}
 Where $\eta$ is the learning rate and $\nabla \vec{w}^m e^\mu$ is the gradient of the contribution of one pattern to the cost function \eqref{eq:1:contribution} with respect to the weight vector $\vec{w}^\mu$. 
 
-To determine $\nabla \vec{w}^m e^\mu$ we first determine the deriviative of \eqref{eq:1:contribution} with respect to $w_n^m$, the $n$th element of the $m$th weight vector:
+To determine $\nabla \vec{w}^m e^\mu$ we first determine the derivative of \eqref{eq:1:contribution} with respect to $w_n^m$, the $n$th element of the $m$th weight vector:
 \begin{align}\label{eq:1:gradient}
 	\frac{\partial e}{\partial w_n^m} & = (\sigma(\vec{\xi}) - \tau(\vec{\xi})) \frac{\partial \sigma}{\partial w_n^m} \nonumber \\
 	~& = (\sigma(\vec{\xi}) - \tau(\vec{\xi})) (1 - \tanh^2(\vec{w^m} \cdot \vec{\xi})) \xi_n 
@@ -30,7 +30,7 @@ Using the derivation presented in \eqref{eq:1:gradient} we find for $m \in \{1, 
 \end{align}
 Note the absence of subscripted $n$ in the last factor of \eqref{eq:1:gradient_vector} when compared with \eqref{eq:1:gradient}.
 
-We have applied \eqref{eq:1:update} in \cref{alg:method}. Although the weight vectors are initialized randomly by \t{init()} they have to statisify the following requirement: $\norm{\vec{w}}^2 = 1$. This avoids that the weight vectors are initialized too large. Each time step $i$ one pattern is randomly selected to be used by \t{get\_random\_pattern}, as is required for stochastig gradient descent. This algorithm exectues $t_max \cdot P$ updates on the weight vectors. 
+We have applied \eqref{eq:1:update} in \cref{alg:method}. Although the weight vectors are initialized randomly by \t{init()} they have to satisfy the following requirement: $\norm{\vec{w}}^2 = 1$. This avoids that the weight vectors are initialized too large. Each time step $i$ one pattern is randomly selected to be used by \t{get\_random\_pattern}, as is required for stochastic gradient descent. This algorithm executes $t_{max} \cdot P$ updates on the weight vectors. 
 
 \input{pseudo.tex}
 
