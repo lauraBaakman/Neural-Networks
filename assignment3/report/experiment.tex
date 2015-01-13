@@ -1,4 +1,7 @@
 %!TEX root = practicum3.tex
+To measure the performance of the SGD algorithm, we split the available data into two data sets. The first set we use to train the algorithm and the other to test its performance. 
+
+In order to say something about the learning rate of the algorithm we calculated the error (using the cost function from \eqref{eq:1:cost}) of the training data set. The performance of unseen data can be measured using the same error function on the test data set. Both errors are computed after every time step $t$ and thus after every $P$ training steps. The two curves are shown in \cref{fig:exp:errors}.
 
 \begin{figure}
 	\centering
