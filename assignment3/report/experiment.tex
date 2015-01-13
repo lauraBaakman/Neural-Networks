@@ -3,7 +3,7 @@ To measure the performance of the SGD algorithm, we split the available data int
 
 To measure the performance while learning, the learning rate of the SGD algorithm can be calculated using the error (the cost function from \eqref{eq:1:cost}) on the training data set. The performance of the algorithm on unseen data, the generalization error, can be measured using the same error function on the test data set. Both errors are computed after every epoch $t$ and thus after every $P$ training steps. The two curves are shown in \cref{fig:exp:errors}.
 
-\begin{figure}
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=\columnwidth]{./img/errors_train_2000_test_2000.png}
 	\caption{The cost, shown in blue, and the generalization error, shown in green, of a training set and test set with each 2000, 50-dimensional points for each epoch, with $t_{max} = 200$, $\eta = 0.05$.}
@@ -12,9 +12,12 @@ To measure the performance while learning, the learning rate of the SGD algorith
 
 One would expect that the error on the training data would be lower than on the test data, because the network is trained specifically on the data from that training data set. One can observe this difference between the two errors in \cref{fig:exp:errors}.
 
-\begin{figure}
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=\columnwidth]{./img/weights_train_2000_test_2000.png}
 	\caption{The values of the elements of the two weights vectors at $t = 200$.}
 	\label{fig:exp:weights}
 \end{figure}
+
+The resulting weights, at $t = 200$, are plotted in \cref{fig:exp:weights}. It seems as tough $\abs{\vec{w}^1} = \vec{2}$, however comparing the actual values of the weight vectors we found that the differences between the elements of the two vectors lie in the range $[-0.05, 0.05]$. It is strange that $\vec{w}^2$ contains only positive weights, however executing the algorithm multiple times on test and training samples from the same data set showed that this is not always the case.
+
