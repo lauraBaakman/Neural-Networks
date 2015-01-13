@@ -1,1 +1,27 @@
 %!TEX root = practicum3.tex
+
+\begin{equation}\label{eq:1:sigma}
+	\sigma(\vec{\xi}) = (\tanh[\vec{w}^1 \cdot \vec{\xi}] + \tanh[\vec{w}^2 \cdot \vec{\xi}])
+\end{equation}
+
+\begin{equation}\label{eq:1:cost}
+	E = \frac{1}{P} \frac{1}{2} \sum_{\mu = 1}^P (\sigma(\vec{\xi}^\mu) - \tau(\vec{\xi}^\mu))^2
+\end{equation}
+
+\begin{equation}\label{eq:1:contribution}
+	e^\mu = \frac{1}{2}(\sigma(\vec{\xi}^\mu) - \tau(\vec{\xi}^\mu))^2
+\end{equation}
+
+\begin{align}\label{eq:1:update}
+	\vec{w}^m & \leftarrow \vec{w}^m - \eta \nabla \vec{w}^m e^\mu && m \in \{1, 2\}
+\end{align}
+
+\begin{align}\label{eq:1:gradient}
+	\frac{\partial e}{\partial w_n^m} & = (\sigma(\vec{\xi}) - \tau(\vec{\xi})) \frac{\partial \sigma}{\partial w_n^m} \nolabel \\
+	~& = (\sigma(\vec{\xi}) - \tau(\vec{\xi})) (1 - \tanh^2(\vec{w^m} \cdot \vec{\xi})) \xi_n 
+\end{align}
+
+\begin{align}\label{eq:1:gradient_vector}
+	\nabla \vec{w}^m = (\sigma(\vec{\xi}) - \tau(\vec{\xi})) (1 - \tanh^2(\vec{w^m} \cdot \vec{\xi})) \vec{\xi} && m \in \{1, 2\}
+\end{align}
+
