@@ -1,4 +1,4 @@
-\documentclass[twoside, a4paper]{article}
+\documentclass[twoside, a4paper, twocolumn]{article}
 \usepackage[english]{babel}
 \usepackage{a4wide}
 
@@ -16,15 +16,18 @@
 
 % Document layout
 % \usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry}
-\usepackage{multicol}
+% \usepackage{multicol}
 \usepackage{paralist}
 
 % Floats
 \usepackage{float}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
 
 %Plaatjes
 \usepackage{graphicx}
-\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage[small,labelfont=bf,up,textfont=it,up]{caption}
 \usepackage{subcaption}
 
 % Tables
@@ -36,7 +39,6 @@
 \renewcommand\thesubsection{\Roman{subsection}}
 \titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}
 \titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}
-
 
 %Wiskunde
 \usepackage{siunitx}
@@ -50,22 +52,36 @@
 \usepackage{csquotes}
 \bibliography{biblio}
 
+% Pseudo code
+\usepackage{setspace}
+\usepackage[algoruled,vlined, linesnumbered, shortend]{algorithm2e}
+
 % Temp
 \usepackage{todonotes}
 
 % Math commands
 \newcommand{\normal}[2]{\ensuremath{\mathcal{N}\left(#1,\, #2\right)}}
-\renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}
+% \renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}
 
 % Other commands
 \renewcommand{\t}[1]{\texttt{#1}}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
 
 \title{Neural Networks\\Practical Assignment 3: Learning a Rule}
 \author{Rick van Veen (s1883933) \and Laura Baakman (s1869140)}
 
 \begin{document}
 
-\maketitle
+\twocolumn[\maketitle]
+
 
 % \todo[inline]{Use compactitem environment for lists}
 
@@ -85,15 +101,16 @@
 % \end{tabular}
 % \end{table}
 
-\begin{multicols}{2}
+% \begin{multicols}{2}
 
 \section{Introduction}
 \input{intro.tex}
 	
 \section{Method}
+\label{s:method}
 \input{method.tex}	
 
-\section{Experiments}
+\section{Experiment}
 \input{experiment.tex}	
 
 \section{Conclusion}
@@ -101,5 +118,5 @@
 
 \printbibliography
 
-\end{multicols}
+% \end{multicols}
 \end{document}
