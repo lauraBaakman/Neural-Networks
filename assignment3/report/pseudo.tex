@@ -1,0 +1,24 @@
+%!TEX root = practicum3.tex		
+\begin{algorithm}
+	\setstretch{1.2}
+	\SetAlgoShortEnd
+	\DontPrintSemicolon
+	\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+	\Input{
+		${\mathcal{D} = \left\{ \vec{\xi}^\mu, \tau\left(\vec{\xi}^\mu\right) \right\}_{\mu = 1}^{P}}$\\
+		$t_{max}$ maximum number of epochs\\
+		$\eta$ the learning rate
+	}
+	\Output{$\vec{w}^1$, $\vec{w}^2$ the weights}
+	\BlankLine
+
+	$[\vec{w}^1, \vec{w}^2]$ := \FuncSty{init($D$)} \tcc*{$\norm{\vec{w}}^2 = 1$}
+
+	\For{$t \leftarrow 1$ \KwTo $t_{max}$}{
+		\For{$i \leftarrow 1$ \KwTo $P$}{
+			$\mu$ := \FuncSty{get\_random\_pattern()}\;
+			$[\vec{w}^1, \vec{w}^2]$ := \FuncSty{update($\mu$)} \tcc*{\eqref{eq:1:update}}
+		}
+	}
+	\caption{$SGD(\mathcal{D}, t_{max}, \eta)$\label{alg:method}}
+\end{algorithm}
