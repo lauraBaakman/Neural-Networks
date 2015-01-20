@@ -6,5 +6,7 @@ function [ret] = generalization_error(a, b)
     %   B: 1 x N vector
     %   OUTPUT
     %   RET: Generalization error between the vectors A and B.
-    ret = 1 / pi * acos(a * b' / (norm(a) * norm(b)));
+    
+    
+    ret = 1 / pi * acos(bsxfun(@rdivide, dot(a,b,2), (norm2(a) .* norm2(b))));
 end
