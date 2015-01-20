@@ -20,36 +20,22 @@ alphas = 0.1:0.1:5.0;
 %% Generate data and compute labels
 w_star = ones(1, N);
 
-g_errors = zeros(max(alphas) * N * n_max, size(alphas, 2));
-final_g_errors = zeros(size(alphas,2), 1);
-
 %% Min-over
-parfor idx=1:size(alphas, 2)
+for idx=1:size(alphas, 2)
     P = ceil(alphas(idx) * N);
-    g_errors_temp = zeros(P * n_max, n_d);
     for it = 1:n_d
-        final_g_error_temp = zeros(it, 1);
         [data, ~] = generate_data(P, N);
         labels = w_star * data';
         labels(labels > 0) = 1;
         labels(labels < 0) = -1;
         
-        [weight, g_error, final_g_error_temp(it)] =  minover(data, labels', n_max, w_star, error);
+        [weights] =  minover(data, labels', n_max, error); 
         
-        g_errors_temp(:, it) = g_error;
-        
-%         c_labels = weight * data';
-%         c_labels(c_labels > 0) = 1;
-%         c_labels(c_labels < 0) = -1;
-%         
-%         1 - sum(c_labels == labels) / P
+        %   Compute generalization error as function of time
+        %   Store final weights for everything
     end
-    final_g_errors(idx) = mean(final_g_error_temp);
-%     g_errors(1:P * n_max, idx) = nanmean(g_errors_temp, 2);
-%     g_errors(P * n_max + 1:end, idx) = NaN;    
+    % Compute mean final generalization error for this alpha
 end
-
-% matlabpool('close');
 
 % %% Plot 1
 % 
@@ -64,18 +50,15 @@ end
 % semilogx(g_errors_to_plot);
 % xlabel('3 * t')
 % ylabel('generalization error')
-% h_leg = legend(cellstr(num2str(alphas', '%.2f')))
+% h_leg = legend(cellstr(num2str(alphas', '%.2f')));
 % set(h_leg,'FontSize',18);
 % % saveas(fig, '../report/img/N5NMAX500error3.png');
-
-%% Plot 2
-
-fig = figure();
-plot(alphas, final_g_errors, 'bo-', 'MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', 10);
-xlabel('alpha')
-ylabel('generalization error')
-% saveas(fig, '../report/img/finalgeneralizationerrors.png');
-
-
-
-save('workspace');
+% 
+% %% Plot 2
+% 
+% fig = figure();
+% plot(alphas, final_g_errors, 'bo-', 'MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', 10);
+% xlabel('alpha')
+% ylabel('generalization error')
+% % saveas(fig, '../report/img/finalgeneralizationerrors.png');
+% save('workspace');
