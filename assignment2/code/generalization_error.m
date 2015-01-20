@@ -3,10 +3,13 @@ function [ret] = generalization_error(a, b)
     %b.
     %   INPUT
     %   A: 1 x N vector 
-    %   B: 1 x N vector
+    %   B: M x N matrix
     %   OUTPUT
     %   RET: Generalization error between the vectors A and B.
     
+    M = size(b, 1);
+    norm2 = @(x) sqrt(sum(x.^2,2));
+    a_repeated = repmat(a, M, 1);
     
-    ret = 1 / pi * acos(bsxfun(@rdivide, dot(a,b,2), (norm2(a) .* norm2(b))));
+    ret = 1 / pi * acos(bsxfun(@rdivide, dot(a_repeated,b,2), (norm2(a_repeated) .* norm2(b))));
 end
