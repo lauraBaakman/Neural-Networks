@@ -14,10 +14,9 @@ function [ weights_all] = minover(data, labels, n_max, error)
     t_max = n_max * P;
     t = 0;
     
-    weights = zeros(1, N);
+    weights = rand(1, N);
     generalization_errors = zeros(t_max, 1);
     generalization_errors(1) = 1;
-    weights_all = zeros(t_max, N);
     
     while t < P || (not_converged(generalization_errors(t - P + 1: t), error) && t < t_max)
         t = t + 1;
@@ -40,8 +39,4 @@ end
 function [ret] = not_converged(generalization_errors, error)
    difference = abs(generalization_errors - repmat(generalization_errors(end), size(generalization_errors, 1), 1));
    ret = sum(sum(difference > error));
-end
-
-function [ret] = generalization_error(a, b)
-    ret = 1 / pi * acos(a * b' / (norm(a) * norm(b)));
 end

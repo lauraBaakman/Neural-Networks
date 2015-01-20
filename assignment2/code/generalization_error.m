@@ -1,4 +1,4 @@
-function [ret] = generalization_error(a, b)
+function [ret] = generalization_error(teacher, weights)
     %GENERALIZATION_ERROR computes the generalization error between a and
     %b.
     %   INPUT
@@ -7,9 +7,9 @@ function [ret] = generalization_error(a, b)
     %   OUTPUT
     %   RET: Generalization error between the vectors A and B.
     
-    M = size(b, 1);
+    M = size(weights, 1);
     norm2 = @(x) sqrt(sum(x.^2,2));
-    a_repeated = repmat(a, M, 1);
+    a_repeated = repmat(teacher, M, 1);
     
-    ret = 1 / pi * acos(bsxfun(@rdivide, dot(a_repeated,b,2), (norm2(a_repeated) .* norm2(b))));
+    ret = 1 / pi * acos(bsxfun(@rdivide, dot(a_repeated,weights,2), (norm2(a_repeated) .* norm2(weights))));
 end
