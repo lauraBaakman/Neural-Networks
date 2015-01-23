@@ -7,7 +7,6 @@
 	\Input{
 		$\mathcal{D} = \left\{\xi^i, S^i \right\}_{i}^{P}$, $\forall i \; \xi^i \in \mathcal{R}^{N}$\\
 		$n_{max}$ maximum number of epochs\\
-		$\vec{w}^*$ the teacher weights
 	}
 	\Output{$\vec{w}$ the student weights}
 	\BlankLine
@@ -21,5 +20,5 @@
 		$\vec{w}(t + 1) = \vec{w}(t) + \dfrac{1}{N} \cdot \xi^{\mu(t)} \cdot S^{\mu(t)}$\;
 		$t$ := $t + 1$
 	}
-	\caption{$minover(\mathcal{D}, n_{max}, \vec{w})$\label{alg:method:minnover}}
+	\caption{$minover(\mathcal{D}, n_{max})$\label{alg:method:minnover}}
 \end{algorithm}
