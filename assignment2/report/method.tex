@@ -10,39 +10,54 @@ The teacher $\vec{w}^*$ can be chosen randomly as long as the following conditio
 	\norm{\vec{w}^*}^2 = N.
 \end{equation}
 
-The Minover algorithm is an iterative procedure that runs over a period of time $t = 0, 1, 2, \dotsc, t_{max}$ until either the stability of the solution does not change anymore for $P$ steps or the number of maximal time steps $t_{max} = n_{max} \cdot P$ has been reached reached. Where $n_{max}$ is comparable to the number of epochs in the Rosenblatt algorithm. The stability of a pattern $\xi$ with label $S$ given a certain weight vector $\vec{w}$ is defined as:
-
-\begin{equation}\label{eq:method:maximum_stability}
-	\mathnormal{k} = \frac{\vec{w} \cdot \vec{\xi} \cdot S}{\norm{\vec{w}}}.
-\end{equation}
-
-We say that the stability has converged when the last $P$ calculated generalization errors\eqref{eq:method:generalization_error} differentiate less than $0 \pm \varepsilon$.\\
-
-The stability defined in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. To eventually find the weight vector with maximal stability the algorithm takes the following two steps every iteration: it selects the pattern $\mu(t)$ with the minimal distance/stability (minimal overlap) to the current solution. The current weight vector $\vec{w}(t)$ is then updated with Hebb's rule, see \eqref{eq:method:update}.
-
-\begin{equation}\label{eq:method:update}
-	\vec{w}(t + 1) = \vec{w}(t) + \frac{1}{N} \xi^{\mu(t)} S^{\mu(t)} 
-\end{equation}
-
-See \autoref{alg:method:minnover} for the pseudo code of the procedure described above. The method \texttt{notConverged} compares the generalization error \eqref{eq:method:generalization_error} of the last $P$ iterations, as explained earlier. 
-
-\input{pseudo}
-
-The earlier mentioned generalization error $\epsilon$ gives the probability that the teacher vector $\vec{w}^*$ and the student vector $\vec{w}$ disagree:
-
-\begin{equation}\label{eq:method:generalization_error}
-	\epsilon = \frac{2\phi}{2\pi} = \frac{1}{\pi} \arccos \left(\frac{\vec{w} \cdot \vec{w}^*}{\norm{\vec{w}} \norm{\vec{w}^*}}\right).
-\end{equation}
-
-The parameter $\phi$ mentioned iin \eqref{eq:method:generalization_error} is the angle between the teacher and student vector, shown in \cref{fig:methode:generalizationError}. The probability of a different classification by the two vectors is indicated by the shaded area of the unit circle in \cref{fig:methode:generalizationError}.\\
-
 \begin{figure}
 	\centering
-	% \includegraphics[scale=1]{./img/generalizationError}
-	\missingfigure{Plaatje!}
-	\caption{The difference between the student vector $\vec{w}$ and the weight vector $\vec{w}^*$.}
+	\includegraphics[scale=1]{./img/generalizationError}
+	\caption{The difference between two vectors $\vec{w_1}$ and $\vec{w_2}$.} 
 	\label{fig:methode:generalizationError}
 \end{figure}
 
-As stated before Minover contrary to Rosenblatt does not stop when a solution is found but continues until the solution with optimal stability is found.
+~\\To compare two weight vectors $\vec{w_1}$ and $\vec{w_2}$ we use the probability that $\vec{w_1}$ classifies a pattern $\vec{\xi}$ different then $\vec{w_2}$. The shaded area in \cref{fig:methode:generalizationError} shows the probability that $\vec{w_1}$ and $\vec{w_2}$ disagree. Denoting the angle between the two vectors with $\phi$, the probabililty of the two vectors disagreeing can be written as:
+	\begin{equation}\label{eq:method:generalizationError1}
+		\epsilon = \frac{2\phi}{2\pi}.
+	\end{equation}
+Using the following definition of the dot product:
+	\begin{equation}\label{eq::method:dotProduct}
+		\vec{a} \cdot \vec{b} = \norm{a} \norm{b} \cos \phi,
+	\end{equation}
+we rewrite \eqref{eq:method:generalizationError1} to:
+	\begin{equation}\label{eq:method:generalizationError2}
+		\epsilon = \frac{1}{\pi} \arccos \left(\frac{\vec{w} \cdot \vec{w}^*}{\norm{\vec{w}} \norm{\vec{w}^*}}\right).
+	\end{equation}
+
+~\\The Minover algorithm is an iterative procedure that tries to find the weight vector of maximal stability. The stability of a pattern $\vec{\xi^\mu}$ given weight vector $\vec{w}$ is defined as: 
+
+\begin{equation}\label{eq:method:maximum_stability}
+	\kappa^\mu = \frac{\vec{w} \cdot \vec{\xi} \cdot S}{\norm{\vec{w}}}.
+\end{equation}
+
+The stability defined in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. 
+
+To eventually find the weight vector with maximal stability the algorithm takes the following two steps every iteration: it selects the pattern $\mu(t)$ with the minimal distance/stability (minimal overlap) to the current solution. The current weight vector $\vec{w}(t)$ is then updated with Hebb's rule, see \eqref{eq:method:update}. 
+
+	\begin{equation}\label{eq:method:update}
+		\vec{w}(t + 1) = \vec{w}(t) + \frac{1}{N} \xi^{\mu(t)} S^{\mu(t)} 
+	\end{equation}
+
+The stability of a perceptron for a given dichotomy $\mathcal{D}$ is:
+	\begin{equation}
+		\kappa(\vec{w}) = \min_{\mu} \left\{ \kappa^\mu \right\}.
+	\end{equation}
+
+~\\The Minover algorithm terminates when either the weight vector does not change anymore for $P$ steps or the number of maximal time steps $t_{max} = n_{max} \cdot P$ has been reached. Where $n_{max}$ is comparable to the number of epochs in the Rosenblatt algorithm. 
+
+To compare the weight vectors $\vec{w}(t)$ and $\vec{w}(t - 1)$ we use the error measure defined in \eqref{eq:method:generalizationError2}. We say that a weight vector has not changed for $P$ steps if $\epsilon$ for the last $P$ weight vectors differentiates less than $0 \pm \varepsilon$.
+
+See \autoref{alg:method:minnover} for the pseudo code of the procedure described above. The method \texttt{notConverged} compares the differences between the last $P$ weight vectors using \eqref{eq:method:generalizationError2} as explained earlier.
+
+\input{pseudo}
+
+An implementation of the pseudo code in \autoref{alg:method:minnover} can be found in \cref{ap:matlab}.
+
+As stated before Minover, contrary to Rosenblatt, does not stop when a solution is found but continues until the solution with optimal stability is found. The advantage of this is that the perceptron trained using the Minimal Overlap algorithm generalizes better. 
 
