@@ -21,7 +21,8 @@ The teacher $\vec{w}^*$ can be chosen randomly as long as the following conditio
 	\begin{equation}\label{eq:method:generalizationError1}
 		\epsilon = \frac{2\phi}{2\pi}.
 	\end{equation}
-Using the following definition of the dot product:
+\clearpage
+\noindent Using the following definition of the dot product:
 	\begin{equation}\label{eq::method:dotProduct}
 		\vec{a} \cdot \vec{b} = \norm{a} \norm{b} \cos \phi,
 	\end{equation}
@@ -36,7 +37,7 @@ we rewrite \eqref{eq:method:generalizationError1} to:
 	\kappa^\mu = \frac{\vec{w} \cdot \vec{\xi} \cdot S}{\norm{\vec{w}}}.
 \end{equation}
 
-The stability defined in \eqref{eq:method:maximum_stability} can be thought of as the distance between all the patterns and the current solution $\vec{w}(t)$. 
+The stability defined in \eqref{eq:method:maximum_stability} can be thought of as the distance between a pattern and the current weight vector $\vec{w}(t)$. 
 
 To eventually find the weight vector with maximal stability the algorithm takes the following two steps every iteration: it selects the pattern $\mu(t)$ with the minimal distance/stability (minimal overlap) to the current solution. The current weight vector $\vec{w}(t)$ is then updated with Hebb's rule, see \eqref{eq:method:update}. 
 
@@ -57,7 +58,7 @@ See \autoref{alg:method:minnover} for the pseudo code of the procedure described
 
 \input{pseudo}
 
-An implementation of the pseudo code in \autoref{alg:method:minnover} can be found in \cref{ap:6}.
+An implementation of the pseudo code in \autoref{alg:method:minnover} can be found in \cref{ap:matlab}.
 
 As stated before Minover, contrary to Rosenblatt, does not stop when a solution is found but continues until the solution with optimal stability is found. The advantage of this is that the perceptron trained using the Minimal Overlap algorithm generalizes better. 
 
