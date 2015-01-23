@@ -16,7 +16,7 @@
 	$\vec{w}$ := $[0, \dotsc, 0]^T$ \tcc*{$\vec{w} \in \mathcal{R}^N$}
 
 	\While{$t < t_{max}$ $\land$ \FuncSty{notConverged()}}{
-		find $\mu(t)$ such that $\mathnormal{k}^{\mu(t)} = \displaystyle\min_\nu \left\{ \mathnormal{k}^{\nu}(t) \right\}$\;
+		find $\mu(t)$ such that $\kappa^{\mu(t)} = \displaystyle\min_\nu \left\{ \kappa^{\nu}(t) \right\}$\;
 		$\vec{w}(t + 1) = \vec{w}(t) + \dfrac{1}{N} \cdot \xi^{\mu(t)} \cdot S^{\mu(t)}$\;
 		$t$ := $t + 1$
 	}

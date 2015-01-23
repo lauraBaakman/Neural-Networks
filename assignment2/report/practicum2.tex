@@ -40,6 +40,31 @@
 \titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}
 \titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}
 
+% Code
+\usepackage{color}
+\usepackage{listings}
+\definecolor{Blue}{rgb}{0,0,0.5}
+\definecolor{Green}{rgb}{0,0.75,0.0}
+\definecolor{LightGray}{rgb}{0.6,0.6,0.6}
+\definecolor{DarkGray}{rgb}{0.3,0.3,0.3}
+\lstset{language=Matlab,
+   keywords={function,uint8,uint16,uint32,double,break,case,catch,continue,else,elseif,end,for,global,if,otherwise,persistent,return,switch,try,while},
+   basicstyle=\ttfamily\small,
+   breaklines=true,
+   keywordstyle=\bfseries\color{Blue},
+   commentstyle=\itshape\color{LightGray},
+   stringstyle=\color{Green},
+   numbers=left,
+   numberstyle=\tiny\color{DarkGray},
+   stepnumber=1,
+   numbersep=10pt,
+   backgroundcolor=\color{white},
+   tabsize=2,
+   showspaces=false,
+   showstringspaces=false,
+   captionpos=b
+}
+
 %Wiskunde
 \usepackage{siunitx}
 \usepackage{mathtools}
@@ -113,10 +138,16 @@
 \section{Experiment}
 \input{experiment.tex}	
 
-\todo[inline]{Matlab code!}
-
 \printbibliography
 
+
+\appendix
+\twocolumn[
+\section{Implementation}
+\label{ap:matlab}
+
+\lstinputlisting{../code/minover.m}
+]
 % \end{multicols}
 \end{document}
 
