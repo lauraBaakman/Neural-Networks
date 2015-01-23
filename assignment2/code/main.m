@@ -51,7 +51,7 @@ generalization_errors = generalization_errors(:,~all(isnan(generalization_errors
 
 %% Plot 1: verloop van de error
 fig = figure();
-semilogx(generalization_errors');
+semilogx(generalization_errors([10, 20, 30 , 40 , 50],:)');
 xlabel('t')
 ylabel('generalization error')
 h_leg = legend(cellstr(num2str(alphas', '%.2f')));
