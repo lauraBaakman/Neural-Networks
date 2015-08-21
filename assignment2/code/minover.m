@@ -5,7 +5,6 @@ function [ weights_all] = minover(data, labels, n_max, error)
     %   LABELS: P X 1 matrix with P labels, that are either 0 or 1.
     %   N_MAX: The number of 'sweeps' to perform, the total number of
     %   steps is N_MAX x P.
-    %   W_STAR: The teacher weights
     %   ERROR: The acceptable difference between weights when testing for
     %   convergence.
     
@@ -36,7 +35,7 @@ function [idx] = find_example_with_lowest_stability(data, labels, weights)
     [~, idx] = min(stabilities);
 end
 
-function [ret] = not_converged(generalization_errors, error)
-   difference = abs(generalization_errors - repmat(generalization_errors(end), size(generalization_errors, 1), 1));
+function [ret] = not_converged(weight_differences, error)
+   difference = abs(weight_differences - repmat(weight_differences(end), size(weight_differences, 1), 1));
    ret = sum(sum(difference > error));
 end
